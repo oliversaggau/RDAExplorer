@@ -61,7 +61,12 @@ namespace RDAExplorer
 
         public void ReadRDAFile()
         {
-            read = new BinaryReader(new FileStream(FileName, FileMode.Open));
+            ReadRDAFile(new FileStream(FileName, FileMode.Open));
+        }
+
+        public void ReadRDAFile(Stream stream)
+        {
+            read = new BinaryReader(stream);
 
             byte[] firstTwoBytes = read.ReadBytes(2); read.BaseStream.Position = 0;
             if (firstTwoBytes[0] == 'R' && firstTwoBytes[1] == '\0')
